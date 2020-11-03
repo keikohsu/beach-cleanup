@@ -38,6 +38,7 @@
       #game {
         cursor: url(./images/cursor_white.png) 50 50, auto;
         top: 5%;
+     
       }
       /* 控制章魚大小 */
       #game img {
@@ -104,8 +105,8 @@
         margin: 125px auto;
         text-align: center;
         height: 500px;
-        width:700px;
-        background-image:url(./images/遊戲說明欄.png);
+        width: 700px;
+        background-image: url(./images/遊戲說明欄.png);
         border-radius: 3px;
         /* box-shadow: 2px 2px rgba(0, 0, 0, 0.3); */
       }
@@ -151,31 +152,29 @@
         color: rgb(56, 15, 15);
         font-size: 30px;
         border-radius: 10px 0 0;
-    position:absolute ;
-    top: 100px;
-    right: 115px;
-    transform: rotate(-10deg);
-     
+        position: absolute;
+        top: 100px;
+        right: 115px;
+        transform: rotate(-10deg);
       }
       #grades {
         position: relative;
         width: 350px;
         height: 350px;
-background-size:95% ;
+        background-size: 95%;
         background-image: url(./images/記分板.png);
         /* background: olive;  */
         background-repeat: no-repeat;
         top: 150px;
-       
       }
     </style>
   </head>
   <body>
     <div id="grades">
       <div class="textstyle">
-      <p>SCORE: <span id="text-score" style="color:red">0</span></p>
-      <p>TIME:<span id="text-time" style="color:red"> 30</span></p>
-    </div>
+        <p>SCORE: <span id="text-score" style="color: red">0</span></p>
+        <p>TIME:<span id="text-time" style="color: red"> 30</span></p>
+      </div>
     </div>
     <!-- 遊戲畫面 -->
 
@@ -198,7 +197,6 @@ background-size:95% ;
     <div input type="button" value="說明遊戲" id="btn-explain"></div>
     <div id="explainBG">
       <div id="explain">
-        
         <button id="ok">OK!</button>
       </div>
     </div>
@@ -227,7 +225,7 @@ background-size:95% ;
       const rand = (num) => {
         return Math.floor(Math.random() * num);
       };
-
+      // 章魚速度
       const movezombie = (id) => {
         $(`#a1${id}`).animate(
           {
@@ -241,6 +239,7 @@ background-size:95% ;
           }
         );
       };
+      // 垃圾速度
       const movezombie2 = (id) => {
         $(`#a2${id}`).animate(
           {
@@ -250,6 +249,19 @@ background-size:95% ;
           7000,
           function () {
             movezombie2(id);
+          }
+        );
+      };
+      // 烏龜
+      const moveTurtle = (id) => {
+        $(`#a3${id}`).animate(
+          {
+            left: rand(70) + "%",
+            right: rand(70) + "%",
+          },
+          10000,
+          function () {
+            moveTurtle(id);
           }
         );
       };
@@ -300,17 +312,18 @@ background-size:95% ;
             }
           }
           // 烏龜
-          if (rand(10) > 5.5) {
-              $("#game").append(`<img src="./images/章魚-慢版-1.gif" id="a1${id}">`);
-              $(`#a1${id}`).css({
-                left: rand(70) + "%",
-                top: rand(50) + "%",
-              });
+          if (rand(10) > 8) {
+            $("#game").append(`<img src="./images/turtle綠色.gif" id="a3${id}">`);
+            $(`#a3${id}`).css({
+              left: rand(100) + "%",
+              top:80+ "%",
+             
+            });
 
-              movezombie(id);
-              id++;
-            }
-          
+            moveTurtle(id);
+            id++;
+          }
+
           {
             // 塑膠袋
             if (rand(10) > 6) {
@@ -352,7 +365,6 @@ background-size:95% ;
               id++;
             }
           }
-          
         }, 1000);
       });
 
@@ -363,7 +375,7 @@ background-size:95% ;
 
           $(this).stop(true, false);
           $(this).css("pointer-events", "none");
-
+          $(this).fadeOut(2000);
           score -= 5;
           $("#text-score").text(score);
         }
@@ -393,6 +405,15 @@ background-size:95% ;
           $(this).css("pointer-events", "none");
           $(this).remove();
           score += 10;
+          $("#text-score").text(score);
+        }
+        // 烏龜
+        else if ($(this).attr("src") === "./images/turtle綠色.gif") {
+          $(this).attr("src", "./images/blood.png");
+          $(this).stop(true, false);
+          $(this).css("pointer-events", "none");
+          $(this).remove();
+          score -= 10;
           $("#text-score").text(score);
         }
       });
