@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>淨灘遊戲</title>
 
   <script src="./ndgmr.Collision.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet" />
@@ -22,7 +22,7 @@
       background: rgb(255, 177, 9);
       /* background-image: url(./images/giphy.gif); */
       background-repeat: no-repeat;
-    overflow: hidden;
+      overflow: hidden;
     }
 
     #gamebackground {
@@ -58,7 +58,7 @@
       height: 130px;
 
       top: 240px;
-      right:1170px;
+      right: 1170px;
     }
 
     #btn-start {
@@ -66,7 +66,7 @@
       background-repeat: no-repeat;
       width: 160px;
       height: 50px;
-     border-radius: 10px ;
+      border-radius: 10px;
       position: absolute;
       transform: rotate(-12deg);
       background-color: rgb(238, 215, 87);
@@ -109,10 +109,11 @@
       width: 100%;
       background: rgba(117, 106, 7, 0.5);
     }
-      /* 愛地球 */
+
+    /* 愛地球 */
     #slide {
       position: absolute;
-    
+
       height: 600px;
       width: 1000px;
       right: 200px;
@@ -121,13 +122,14 @@
       background-size: 100%;
       background-repeat: no-repeat;
     }
-    #slideBG{
-       position: fixed;
+
+    #slideBG {
+      position: fixed;
       left: 0;
       top: 0;
       height: 100%;
       width: 100%;
-      background:rgb(141, 209, 248);
+      background: rgb(141, 209, 248);
     }
 
     #explain {
@@ -166,6 +168,7 @@
       right: 150px;
       animation: Updown 5s infinite alternate;
     }
+
     #circle2 {
       background-image: url(./images/游泳圈.png);
       position: absolute;
@@ -175,7 +178,7 @@
       /* background: olive; */
       background-size: 100%;
       top: -80px;
-      left:130px;
+      left: 130px;
       animation: down 5s infinite alternate;
     }
 
@@ -188,12 +191,13 @@
         margin-right: 10px;
       }
     }
-     @keyframes down {
+
+    @keyframes down {
       0% {
         margin-left: 30px;
         margin-top: 10px;
-        
-        
+
+
       }
 
       50% {
@@ -230,19 +234,20 @@
     #audio_btn {
       position: absolute;
       top: 120px;
-      left:10px;
+      left: 10px;
     }
-/* 按鈕 */
-#next{
-  position: absolute;
-  top: 500px;
-}
-#ok{
-    position: absolute;
-  top: 550px;
-  left: 700px;
-}
 
+    /* 按鈕 */
+    #next {
+      position: absolute;
+      top: 500px;
+    }
+
+    #ok {
+      position: absolute;
+      top: 550px;
+      left: 700px;
+    }
   </style>
 </head>
 
@@ -251,8 +256,8 @@
   </div>
 
   <!-- 音樂 -->
-<audio id="music_A" src="海浪聲.mp3" autoplay="autoplay" loop="loop">你的瀏覽器不支援audio標籤。</audio>
-<a id="audio_btn"><img src="./images/音符.png" width="100" height="100" id="music_A"></a>
+  <audio id="music_A" src="海浪聲.mp3" autoplay="autoplay" loop="loop">你的瀏覽器不支援audio標籤。</audio>
+  <a id="audio_btn"><img src="./images/音符.png" width="100" height="100" id="music_A"></a>
   <!-- <audio id="music_A" src="海浪聲.mp3" loop="1" autoplay controls></audio>
   <a href="javascript:playPause();"><img src="./images/play.png" width="48" height="50" id="music_B"></a> -->
   <div id="grades">
@@ -267,7 +272,7 @@
   <div id="gamebackground">
     <div id="game"></div>
     <div id="circle"></div>
-<div id="circle2"></div>
+    <div id="circle2"></div>
     <div id="role"></div>
   </div>
 
@@ -280,21 +285,21 @@
   <!-- ?遊戲說明鍵? -->
   <div input type="button" value="說明遊戲" id="btn-explain"></div>
   <div id="explainBG">
-    
-      <div id="explain">
-        <button id="ok">OK!</button>
+
+    <div id="explain">
+      <button id="ok">OK!</button>
       <div id="slide">
-        <button id="next">下一步</button>   
+        <button id="next">下一步</button>
       </div>
 
-      </div>
-   
-     
+    </div>
+
+
   </div>
 
 
 
-  
+
   <!--------------------------------JS--------------------------->
   <script src="../jquery-3.5.1.min.js"></script>
   <script>
@@ -305,29 +310,28 @@
     $("#audio_btn").click(function () {
       let music = document.getElementById("music_A");
       if (music.paused) {
-        music.play(); $("music_B").attr("src", "./images/音符.png");
-        $("music_B").fadeOut(200);
+        music.play(); $("#music_B").attr("src", "./images/音符.png");
+        $("#music_B").fadeOut(200);
       }
       else {
-        music.pause(); $("music_B").attr("src", "./images/音符-紅.png");
-        $("music_B").fadeOut(200);
+        music.pause(); $("#music_B").attr("src", "./images/音符-紅.png");
+        $("#music_B").fadeOut(200);
       }
     });
 
 
-   
 
 
-    
+
     // 說明欄
     $(function () {
-    
-      $("#next").click(function(){
+
+      $("#next").click(function () {
         $("#slide").fadeOut(300)
-      
+
       });
       $("#btn-explain").click(function () {
-        
+
         $("#explainBG").fadeIn(300);
       });
 
